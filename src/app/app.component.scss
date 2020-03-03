@@ -1,0 +1,25 @@
+header{
+    background: #0D98A7;
+    padding: 0px 15px;
+    color: white;
+}
+
+.shop-items{
+    display: flex;
+    flex-flow: row wrap; 
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & > *{
+        flex: 1 1 200px;
+    }
+
+}
+
+.flex{
+    display: flex;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}

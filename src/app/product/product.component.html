@@ -1,0 +1,34 @@
+<div class="product">
+
+    <div class="product-heading">
+
+        <div class="product-image">
+            <img [src]="product.image" class="img-responsive" />
+        </div> <!-- Close div for .product-image -->
+
+    </div> <!-- Close div for .product-heading-->
+
+    <div class="product-body">
+
+        <div class="product-name">
+            <span><b>{{ product.name }}</b></span>
+        </div> <!-- Close div for product-name -->
+
+        <div class="product-price">
+            <span>{{ product.price | currency: 'R ' }}</span>
+        </div> <!-- Close div for .product-price-->
+
+    </div> <!-- Close div for .product-body -->
+
+    <div class="product-footer">
+        <button *ngIf="!productInCart(product.id)" class="btn btn-block btn-primary" (click)="addToCart(product)">Add to cart</button>
+
+        <section class="text-center" *ngIf="productInCart(product.id)">
+            <button (click)="addToCart(product)" class="btn btn-primary">+</button>
+            <input #productQty (change)="editCart(product, productQty.value)" [value]="this.cartQuery.getProduct(product.id)['quantity']" class="form-control mx-5 input-sm" />
+            <button (click)="removeFromCart(product)" class="btn btn-danger">-</button>
+        </section>
+
+    </div> <!-- Close div for .product-footer -->
+
+<div> <!-- Close div for .product -->

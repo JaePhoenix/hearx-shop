@@ -1,0 +1,60 @@
+<div class="cart" >
+
+    <div class="icon" (click)="toggleCartDialogue()">
+        <svg fill="white" width="24" height="24" viewBox="0 0 24 24"><path d="M24 3l-.743 2h-1.929l-3.474 12h-13.239l-4.615-11h16.812l-.564 2h-13.24l2.937 7h10.428l3.432-12h4.195zm-15.5 15c-.828 0-1.5.672-1.5 1.5 0 .829.672 1.5 1.5 1.5s1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm6.9-7-1.9 7c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5z"/></svg>
+    </div> <!-- Close div for .icon -->
+
+    <div class="total">
+      {{ productTotal | async }}
+    </div> <!-- Close div for .total -->
+
+</div> <!-- Close div for .cart -->
+
+<section class="cart-frame" *ngIf="showCart">
+
+  <div class="cart-block">
+
+      <div class="close" (click)="toggleCartDialogue()">
+        x
+      </div>
+
+    <h3 class="mb-10">Summary</h3>
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let product of products | async">
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.total | currency: 'R ' }}</td>
+          <td><button type="button" class="btn btn-outline-danger btn-sm" (click)="remove(product.productId)">Remove</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="flex justify-end">
+      Total: {{ cartTotal | async | currency: 'R ' }}
+    </div>
+
+    <div class="flex justify-end mt-10">
+      <button class="btn btn-outline-info btn-lg" (click)="checkout()">Checkout</button>
+    </div>
+
+  </div> <!-- Close div for .cart-block -->
+
+</section>
+
+
+<ng-template #empty>
+  <div class="alert alert-info">
+    You don't have any items in your cart.
+  </div>
+</ng-template>
