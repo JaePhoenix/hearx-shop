@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       this.productsQuery.selectFilters,
       this.productsQuery.selectSearchTerm,
     ]).pipe(switchMap(([cached, filters, searchTerm]) => {
-      return cached ? EMPTY : this.productService.getAllProducts(searchTerm, filters);
+      return cached ? EMPTY : this.productService.getAllProducts('Coffee', filters);
     }), untilDestroyed(this)).subscribe({
       error(err) {
         console.log(err)
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
 
     // fromEvent<StorageEvent>(window, 'storage').pipe(
     //   filter(event => event.key === 'hearx-cart')
-    //   // untilDestroyed(this)
+    //   untilDestroyed(this)
     // ).subscribe(event => {
     //   snapshotManager.setStoresSnapshot(event.newValue, { skipStorageUpdate: true });
     // });
