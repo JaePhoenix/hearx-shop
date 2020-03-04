@@ -7,6 +7,7 @@
     .icon{
         border-right: 2px solid #fff;
         padding-right: 15px;
+        cursor: pointer;
     }
 
     .total{
@@ -17,7 +18,8 @@
 }
 
 .cart-frame{
-    position: absolute;
+    position: fixed;
+    z-index: 1;
     background: rgba(0, 0, 0, .8);
     width: 100vw;
     height: 100vh;
@@ -29,6 +31,7 @@
         height: 22px;
         border-radius: 100%;
         background: red;
+        font-size: 18px;
 
         position: absolute;
         top: -11px;
@@ -38,6 +41,7 @@
         font-weight: 800;
         text-align: center;
         cursor: pointer;
+        opacity: 1;
     }
 
     .cart-block{

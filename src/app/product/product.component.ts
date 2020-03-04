@@ -21,19 +21,14 @@ export class ProductComponent {
     return this.cartQuery.hasProduct(productId);
   }
 
-  addToCart(product: Product) {
-    if(this.productInCart(product.id)){
-      this.cartService.addProduct(product, this.cartQuery.getProduct(product.id)['quantity'] + 1)
-    } else {
-      this.cartService.addProduct(product, 1);
-    }
-  }
+  addToCart(product: Product, quantity?: number) {
 
-  editCart(product: Product, quantity: number){
-    if(quantity <= 0){
-      this.cartService.removeProduct(product.id)
+    let qty = quantity ? quantity : 1;
+
+    if(this.productInCart(product.id)){
+      this.cartService.addProduct(product, this.cartQuery.getProduct(product.id)['quantity'] + qty)
     } else {
-      this.cartService.addProduct(product, quantity);
+      this.cartService.addProduct(product, qty);
     }
   }
 

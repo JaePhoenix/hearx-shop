@@ -1,23 +1,31 @@
-<header>
+<header class="row py-3">
   <div class="col-6">
     <h2>{{ title }}</h2>
   </div>
-  <div class="col-6 text-right"><app-cart></app-cart></div>
+  <div class="col-6 text-right">
+    <app-cart></app-cart>
+  </div>
 </header>
 
-<div class="shop-items">
+<div id="shop-items">
 
-  <app-filters></app-filters>
+  <!-- <app-filters class="d-block"></app-filters> -->
 
-  <section class="flex-1">
+  <ng-template #productsList>
+    <section class="mt-4 col-12 flex-1">
 
-    <app-search-product></app-search-product>
+      <app-search-product></app-search-product>
 
-    <div class="products flex flex-wrap">
-      <app-product *ngFor="let product of products" [product]="product"></app-product>
-    </div>
+      <div class="products flex flex-wrap">
+        <app-product [product]="product" *ngFor="let product of products | async"></app-product>
+      </div>
 
-  </section>
+    </section>
+  </ng-template>
+
+  <div class="flex items-center justify-center w-full" *ngIf="isLoading | async; else productsList">
+    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
+  </div>
 
 
 </div>

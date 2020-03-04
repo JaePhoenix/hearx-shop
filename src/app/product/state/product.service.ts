@@ -10,11 +10,30 @@ import { Observable } from 'rxjs';
 export class ProductsService {
 
   constructor(
+    private productsStore: ProductsStore,
     private http: HttpClient
    ) {
   }
 
-  getAllProducts() {
-    return this.http.get<Product>('/products');
+  getAllProducts(term:string, filters) {
+    return this.http.get<Product[]>('/products', { 
+      params: { term, ...filters }
+    }).pipe(
+      tap(products => this.productsStore.set(products))
+    )
   }
+
+  updateFilters(filters) {
+    this.productsStore.update({ filters });
+  }
+
+  invalidateCache() {
+    this.productsStore.setHasCache(false);
+  }
+
+  updateSearchTerm(searchTerm: string){
+    this.productsStore.update({ searchTerm });
+    this.invalidateCache();
+  }
+
 }

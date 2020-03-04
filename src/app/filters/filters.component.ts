@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ProductsQuery } from '../product/state/product.query';
+import { ProductsService } from '../product/state/product.service';
+
+import { untilDestroyed } from 'ngx-take-until-destroy';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-filters',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor() { }
+  filters = new FormGroup({
+    name: new FormControl(),
+    price: new FormControl(),
+  });
+
+  constructor(
+    private productsService: ProductsService,
+    private productsQuery: ProductsQuery
+  )
+  { }
 
   ngOnInit(): void {
+    this.filters.patchValue(this.productsQuery.filters);
+    this.filters.valueChanges.pipe(
+      tap(() => this.productsService.invalidateCache()),
+      untilDestroyed(this)
+    ).subscribe(filters => this.productsService.updateFilters(filters))
   }
+
+  ngOnDestroy() {}
 
 }

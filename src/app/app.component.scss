@@ -4,22 +4,22 @@ header{
     color: white;
 }
 
-.shop-items{
-    display: flex;
-    flex-flow: row wrap; 
-    justify-content: flex-start;
-    align-items: flex-start;
+// .shop-items{
+//     display: flex;
+//     flex-flow: row wrap; 
+//     justify-content: flex-start;
+//     align-items: flex-start;
 
-    & > *{
-        flex: 1 1 200px;
-    }
+//     & > *{
+//         flex: 1 1 200px;
+//     }
 
-}
+// }
 
-.flex{
-    display: flex;
-}
+// .flex{
+//     display: flex;
+// }
 
-.flex-wrap{
-    flex-wrap: wrap;
-}
+// .flex-wrap{
+//     flex-wrap: wrap;
+// }

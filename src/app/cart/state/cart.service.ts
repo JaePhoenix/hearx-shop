@@ -31,8 +31,6 @@ export class CartService {
       expiry: now.getTime() + 1000 * 60 * 60 // one hour
     }
 
-    console.log('saving cart => ', this.cartStore)
-
     localStorage.setItem('hearx-cart', JSON.stringify(cartContent))
   }
 
@@ -49,8 +47,6 @@ export class CartService {
       localStorage.removeItem(cartContentString)
       return null
     }
-
-    console.log('cart -> ', cartContent.value)
 
     return cartContent.value
   }

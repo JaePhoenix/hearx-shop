@@ -5,9 +5,8 @@ import { Product } from './product.model';
 export interface ProductsState extends EntityState<Product> {
   searchTerm: string;
   filters: {
-    condition: string;
-    location: string;
-    deliveryOption: boolean;
+    price: number;
+    name: string;
   }
 }
 
@@ -19,9 +18,8 @@ export class ProductsStore extends EntityStore<ProductsState, Product> {
     super({
       searchTerm: '',
       filters: {
-        condition: null,
-        location: null,
-        deliveryOption: false
+        price: null,
+        name: null
       }
     });
   }

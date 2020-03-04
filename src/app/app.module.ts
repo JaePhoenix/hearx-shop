@@ -11,6 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { fakeServerProvider } from './_fakeServer/fakeServerProvider';
 import { FiltersComponent } from './filters/filters.component';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +23,9 @@ import { FiltersComponent } from './filters/filters.component';
   imports: [
     BrowserModule,
     environment.production ? [] : AkitaNgDevtools.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     fakeServerProvider
